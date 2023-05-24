@@ -9,10 +9,18 @@ pipeline {
     }
 
     stages {
+       
         stage('Logging into AWS ECR') {
             steps {
                 script {
                     sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 993413030456.dkr.ecr.us-east-2.amazonaws.com"
+                }
+            }
+        }
+        stage('Cloning git') {
+            steps {
+                script {
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/UsaSai99charanteja/CI-CD-PIPELINE.git']])
                 }
             }
         }
