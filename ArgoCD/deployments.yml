@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ci-cd-app
+spec:
+  replicas: 2
+  selector:
+    mactchLabels:
+      app: my-ci-cd-app
+  template:
+    metadata:
+      labels:
+        app: my-ci-cd-app
+    spec:
+      containers:
+      - name: my-ci-cd-app
+        image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:27
+        ports: 
+        - containerPort: 80
