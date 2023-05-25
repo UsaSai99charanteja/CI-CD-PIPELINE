@@ -53,7 +53,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
                     sh '''
                         git config user.email "saicharantejausa@gmail.com"
-                        git config user.name " Sai Charanteja"
+                        git config user.name "Sai Charanteja"
                         sed -i "s/${REPOSITORY_URI}:OLD_TAG|${REPOSITORY_URI}:${env.BUILD_NUMBER}/g" jenkins-ci/cd-argocd/deployments.yml
                         git add jenkins-ci/cd-argocd/deployment.yml
                         git commit -m "updated the image"
