@@ -54,7 +54,8 @@ pipeline {
                     sh '''
                         git config user.email "saicharantejausa@gmail.com"
                         git config user.name "Sai Charanteja"
-                        sed -i "s/${REPOSITORY_URI}:OLD_TAG|${REPOSITORY_URI}:${env.BUILD_NUMBER}/g" deployments.yml
+                        BUILD_NUMBER=${BUILD_NUMBER}
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployments.yml
                         git add jenkins-ci/cd-argocd/deployments.yml
                         git commit -m "updated the image"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
