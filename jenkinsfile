@@ -50,7 +50,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
                     sh '''
-                       
+                        git pull
                         git config user.email "saicharantejausa@gmail.com"
                         git config user.name "Sai Charanteja"
                         BUILD_NUMBER=${BUILD_NUMBER}
@@ -59,7 +59,7 @@ pipeline {
                         git add ArgoCD/deployments.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/ArgoCD/deploymentyml HEAD:main
-                        git pull origin main
+                        
                        
                     '''
                 }
