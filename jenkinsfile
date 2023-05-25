@@ -35,9 +35,9 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sh "docker build -t cipipeline ."
-                    sh "docker tag cipipeline:latest 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:latest"
-                    sh "docker push 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:latest"
+                    docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    docker.push("${env.BUILD_NUMBER}")
+                    docker.push("latest")
                     }
                     
                    
