@@ -53,7 +53,7 @@ pipeline {
                        
                         git config user.email "saicharantejausa@gmail.com"
                         git config user.name "Sai Charanteja"
-                        git checkout main
+                        git checkout https://github.com/UsaSai99charanteja/CI-CD-PIPELINE.git
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployments.yml
                         git add deployments.yml
