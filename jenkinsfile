@@ -57,7 +57,7 @@ pipeline {
                         sed -i "s/${REPOSITORY_URI}:OLD_TAG|${REPOSITORY_URI}:${env.BUILD_NUMBER}/g" jenkins-ci/cd-argocd/deployment.yml
                         git add jenkins-ci/cd-argocd/deployment.yml
                         git commit -m "updated the image"
-                        git push https://${GITHUN_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                     '''
                 }
             }
