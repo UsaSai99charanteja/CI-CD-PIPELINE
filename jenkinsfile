@@ -35,9 +35,10 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 993413030456.dkr.ecr.us-east-2.amazonaws.com"
+                    docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {                    
                     dockerImage.push("${env.BUILD_NUMBER}")
                     dockerImage.push("latest")
+                    }
                 }
             }
         }
