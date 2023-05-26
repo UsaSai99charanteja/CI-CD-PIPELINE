@@ -58,7 +58,7 @@ pipeline {
                         sed -i "s|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:.*|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:${BUILD_NUMBER}|" deployments.yml
                         git add deployments.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
-                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/ArgoCD HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/ HEAD:main
                         
                        
                     '''
