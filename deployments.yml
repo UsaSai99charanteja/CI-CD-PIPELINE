@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: my-ci-cd-app
-        image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:81
+        image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:82
         ports: 
         - containerPort: 80
