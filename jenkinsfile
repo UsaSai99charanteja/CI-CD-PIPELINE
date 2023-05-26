@@ -52,7 +52,7 @@ pipeline {
                     sh '''
                     
                         git pull https://github.com/UsaSai99charanteja/CI-CD-PIPELINE/ArgoCD.git
-                        
+                      
                         git config user.email "saicharantejausa@gmail.com"
                         git config user.name "Sai Charanteja"
                         BUILD_NUMBER=${BUILD_NUMBER}
