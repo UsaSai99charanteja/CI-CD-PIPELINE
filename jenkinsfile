@@ -52,8 +52,8 @@ pipeline {
                     sh '''
                     
                         git pull https://github.com/UsaSai99charanteja/ArgoCD.git
-                        git config user.email "saicharantejausa@gmail.com"
-                        git config user.name "Sai Charanteja"
+                        git config --global user.email "saicharantejausa@gmail.com"
+                        git config --global user.name "Sai Charanteja"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:.*|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:${BUILD_NUMBER}|" deployments.yml
                         git add deployments.yml
