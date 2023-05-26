@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: cicd-app
-        image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:95
+        image: *************.dkr.ecr.us-east-2.amazonaws.com/cipipeline:95
         ports:
         - containerPort: 8080
