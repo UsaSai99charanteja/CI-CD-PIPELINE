@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCOUNT_ID="993413030456"
+        AWS_ACCOUNT_ID="***************"
         AWS_DEFAULT_REGION="US-EAST-2"
         IMAGE_REPO_NAME="cipipeline"
         IMAGE_TAG="latest"
@@ -13,14 +13,14 @@ pipeline {
         stage('Logging into AWS ECR') {
             steps {
                     
-                script {sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 993413030456.dkr.ecr.us-east-2.amazonaws.com"
+                script {sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin **************.dkr.ecr.us-east-2.amazonaws.com"
                 }
             }
         }
         stage('Cloning git') {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/UsaSai99charanteja/CI-CD-PIPELINE.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/**************/CI-CD-PIPELINE.git']])
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    docker.withRegistry('https://993413030456.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {                    
+                    docker.withRegistry('https://******************.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {                    
                     dockerImage.push("${env.BUILD_NUMBER}")
                     dockerImage.push("latest")
                     }
@@ -45,15 +45,15 @@ pipeline {
         stage ('Updating the Deployment File') {
             environment {
                 GIT_REPO_NAME = "CI-CD-PIPELINE"
-                GIT_USER_NAME = "UsaSai99charanteja"
+                GIT_USER_NAME = "******************"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
                     sh '''
                     
-                        git pull https://github.com/UsaSai99charanteja/CI-CD-PIPELINE.git
-                        git config  user.email "saicharantejausa@gmail.com"
-                        git config  user.name "Sai Charanteja"
+                        git pull https://github.com/******************/CI-CD-PIPELINE.git
+                        git config  user.email "********************@gmail.com"
+                        git config  user.name "*******************"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ArgoCD/deployments.yml
                         git add ArgoCD/deployments.yml
