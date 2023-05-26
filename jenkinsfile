@@ -44,19 +44,19 @@ pipeline {
         }
         stage ('Updating the Deployment File') {
             environment {
-                GIT_REPO_NAME = "CI-CD-PIPELINE"
+                GIT_REPO_NAME = "ArgoCD"
                 GIT_USER_NAME = "UsaSai99charanteja"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
                     sh '''
                     
-                        git pull https://github.com/UsaSai99charanteja/CI-CD-PIPELINE.git
+                        git pull https://github.com/UsaSai99charanteja/ArgoCD.git
                         git config user.email "saicharantejausa@gmail.com"
                         git config user.name "Sai Charanteja"
                         BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:.*|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:${BUILD_NUMBER}|" ArgoCD/deployments.yml
-                        git add ArgoCD/deployments.yml
+                        sed -i "s|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:.*|image: 993413030456.dkr.ecr.us-east-2.amazonaws.com/cipipeline:${BUILD_NUMBER}|" deployments.yml
+                        git add deployments.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         
