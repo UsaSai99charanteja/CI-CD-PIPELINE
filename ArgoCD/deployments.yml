@@ -4,7 +4,7 @@ metadata:
   name: my-ci-cd-app
   namespace: argocd
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     mactchLabels:
       app: my-ci-cd-app
